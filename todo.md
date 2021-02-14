@@ -1,0 +1,2 @@
+- add conversion between kg and lbs
+- make the recordSets function in workingset be abelt to expand the array past the sets #

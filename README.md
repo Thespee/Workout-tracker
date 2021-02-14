@@ -7,7 +7,7 @@ track progress with different exercises over time
 
 Core Features:
 - data base of exercises (muscles worked, equipment needed)
-- pre build workouts before going to the gym (list of exercises, reps, RPE)
+- pre build workouts before going to the gym (list of exercises, sets, reps, RPE)
     - also allow users to store these for later reference
 - edit/build workouts on the fly while at the gym 
 - track weight used during exercise
@@ -31,3 +31,10 @@ In addition, I think this is a project where I can make a really intuitive and u
 am the target audience. I know what makes me dislike other apps on the market, and I have a good
 idea about how I want to use this app while working out. plus I have a decent amount of experience with different types
 of exercises and using technology to aid my workouts.   
+
+## User Stories
+As a user, I want to be able to:
+- plan sets, reps, and rpe for an exercise
+- record weight for each set
+- make a workout plan (list of exercises)
+- change an exercise in a workout plan
