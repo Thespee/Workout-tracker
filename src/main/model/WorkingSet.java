@@ -42,4 +42,32 @@ public class WorkingSet {
         this.workingReps[set - 1] = reps;
         this.workingWeight[set - 1] = weight;
     }
+
+    public Exercise getExercise() {
+        return exercise;
+    }
+
+    public int getSets() {
+        return sets;
+    }
+
+    public int getReps() {
+        return reps;
+    }
+
+    public int getRepRange() {
+        return repRange;
+    }
+
+    public int getRpe() {
+        return rpe;
+    }
+
+    public int[] getWorkingReps() {
+        return workingReps;
+    }
+
+    public float[] getWorkingWeight() {
+        return workingWeight;
+    }
 }
