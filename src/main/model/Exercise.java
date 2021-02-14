@@ -16,7 +16,9 @@ public class Exercise {
 
     public Exercise(String n) {
         this.name = n;
+        this.primary = new ArrayList<>();
         this.primary.clear();
+        this.secondary = new ArrayList<>();
         this.secondary.clear();
     }
 

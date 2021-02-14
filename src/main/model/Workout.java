@@ -9,6 +9,8 @@ public class Workout {
 
     public Workout(String name) {
         this.name = name;
+        workoutPlan = new ArrayList<>();
+        workoutPlan.clear();
     }
 
     //REQUIRES
@@ -21,19 +23,16 @@ public class Workout {
     //REQUIRES exercise to be in plan
     //MODIFIES the workout plan
     //effects removes the matching exercise from the workout plan
-    public void removeFromPlan(Exercise exercise) {
-        //stub
-    }
-
-    //REQUIRES exercise to be in  workout plan int set to be within the range specified when creating the working set
-    //MODIFIES this: the working set's weight and reps
-    //EFFECTS records the reps and weight for a specific set for a specific exercise
-    public void recordExercise(Exercise exercise, int set, int reps, float weight) {
+    public void removeFromPlan(String exerciseName) {
         //stub
     }
 
     public ArrayList<WorkingSet> getWorkoutPlan() {
         return workoutPlan;
+    }
+
+    public WorkingSet getWorkingSet(int pos) {
+        return workoutPlan.get(pos - 1);
     }
 
     public String getName() {

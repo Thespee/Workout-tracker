@@ -10,6 +10,8 @@ public class User {
 
     public User(String name) {
         this.name = name;
+        this.workoutHistory = new ArrayList<>();
+        this.savedWorkouts = new ArrayList<>();
     }
 
     //REQUIRES
@@ -29,9 +31,16 @@ public class User {
     //REQUIRES
     //MODIFIES
     //EFFECTS returns the last instance of doing a specific exercise, false if it's never been done before
-    public WorkingSet lastTimeExercise(Exercise exercise) {
+    public WorkingSet lastTimeExercise(String exercise) {
         //stub
         return null;
+    }
+
+    //REQUIRES name to be the name of a saved workout
+    //MODIFIES workout history
+    //EFFECTS add an entry to workout histroy from the list of saved ones
+    public void startSavedWorkout(String name) {
+        //stub
     }
 
     public ArrayList<Workout> getSavedWorkouts() {
