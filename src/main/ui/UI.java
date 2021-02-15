@@ -1,9 +1,7 @@
 package ui;
 
-import com.sun.corba.se.spi.orbutil.threadpool.Work;
 import model.*;
 import java.io.*;
-import java.util.ArrayList;
 
 public class UI {
     BufferedReader consolIn;
