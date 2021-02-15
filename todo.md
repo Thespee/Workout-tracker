@@ -1,7 +1,4 @@
 ##Short term:
-- complete stubs in workout
-- complete stubs in user
-- complete the second constructor in ActiveWorkout
 - work on UI
 
 ##Long term:

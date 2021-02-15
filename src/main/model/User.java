@@ -69,4 +69,7 @@ public class User {
         return workoutHistory;
     }
 
+    public String getName() {
+        return name;
+    }
 }
