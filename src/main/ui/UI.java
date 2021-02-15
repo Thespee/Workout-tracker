@@ -3,6 +3,7 @@ package ui;
 import com.sun.corba.se.spi.orbutil.threadpool.Work;
 import model.*;
 import java.io.*;
+import java.util.ArrayList;
 
 public class UI {
     BufferedReader consolIn;
@@ -25,6 +26,7 @@ public class UI {
 
     private void menu() throws IOException {
         System.out.println("What do you want to do (type in number): ");
+        System.out.println("Only options 1 & 4 are available for demonstration");
         System.out.println("(1) Create Saved Workout");
         System.out.println("(2) Do Saved Workout");
         System.out.println("(3) Quick Workout");
@@ -51,7 +53,7 @@ public class UI {
                 System.out.println("choice = " + choice);
                 break;
             case 4:
-                System.out.println("choice = " + choice);
+                this.showSavedWorkouts();
                 break;
             case 5:
                 System.out.println("choice = " + choice);
@@ -67,25 +69,51 @@ public class UI {
         Workout workout = new Workout(name);
 
         while (choice == "y") {
-            System.out.println("Do you want to add exercise (y/n)");
-            choice = consolIn.readLine();
             workout.addToPlan(this.createWorkingSet(), -1);
             this.showWorkout(workout);
+            System.out.println("Do you want to add exercise (y/n)");
+            choice = consolIn.readLine();
         }
+
+        user1.addSavedWorkout(workout);
     }
 
-    //TODO: everthing below this
-    private void showWorkout(Workout workout) {
-        System.out.println("Printing out workout");
+    private void showWorkout(Workout workout) throws IOException {
+        for (WorkingSet ws : workout.getWorkoutPlan()) {
+            this.printWorkingSet(ws);
+        }
     }
 
     private WorkingSet createWorkingSet() throws IOException {
         Exercise exercise = this.createExercise();
-        return null;
+        System.out.println("Please enter in only integers for the following values");
+        System.out.println("Sets: ");
+        int sets = Integer.parseInt(consolIn.readLine());
+        System.out.println("Reps: ");
+        int reps = Integer.parseInt(consolIn.readLine());
+        System.out.println("RPE: ");
+        int rpe = Integer.parseInt(consolIn.readLine());
+        return new WorkingSet(exercise,sets,reps,rpe);
     }
 
     private Exercise createExercise() throws IOException {
-        //
-        return null;
+        String name;
+        System.out.println("What is the exrcise called: ");
+        name = consolIn.readLine();
+        return new Exercise(name);
+    }
+
+    private void printWorkingSet(WorkingSet ws) throws IOException {
+        System.out.println(ws.getExercise().getName());
+        System.out.println("Sets: " + ws.getSets());
+        System.out.println("Reps: " + ws.getReps());
+        System.out.println("RPE: " + ws.getRpe());
+    }
+
+    private void showSavedWorkouts() throws IOException {
+        for (Workout w : user1.getSavedWorkouts()) {
+            System.out.println(w.getName());
+            this.showWorkout(w);
+        }
     }
 }
