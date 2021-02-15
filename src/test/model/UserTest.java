@@ -19,7 +19,9 @@ public class UserTest {
         ActiveWorkout activeWorkout = new ActiveWorkout("Push");
         activeWorkout.addToPlan(workingSet, -1);
         test.addActiveWorkout(activeWorkout);
+        test.addActiveWorkout(activeWorkout);
         assertTrue(test.getWorkoutHistory().contains(activeWorkout));
+        assertEquals(2, test.getWorkoutHistory().size());
     }
 
     @Test
@@ -37,13 +39,16 @@ public class UserTest {
         Exercise exercise = new Exercise("test");
         WorkingSet workingSet1 = new WorkingSet(exercise,1,1,1);
         WorkingSet workingSet2 = new WorkingSet(exercise,2,2,2);
-        ActiveWorkout activeWorkout = new ActiveWorkout("Push");
-        activeWorkout.addToPlan(workingSet1, -1);
-        activeWorkout.addToPlan(workingSet2, -1);
-        test.addActiveWorkout(activeWorkout);
+        ActiveWorkout activeWorkout1 = new ActiveWorkout("Push1");
+        activeWorkout1.addToPlan(workingSet1, -1);
+        ActiveWorkout activeWorkout2 = new ActiveWorkout("Push2");
+        activeWorkout2.addToPlan(workingSet2, -1);
+        test.addActiveWorkout(activeWorkout1);
+        test.addActiveWorkout(activeWorkout2);
 
-        //should return the working set of the most recent time we did exercise "test"
-        assertEquals(workingSet2, test.lastTimeExercise("test"));
+        //should return the working set of the most recent time we did exercise "test", excluding the current workout
+        assertEquals(1, test.lastTimeExercise("test").getSets());
+        assertEquals(null, test.lastTimeExercise("not in list"));
 
     }
 
@@ -55,6 +60,8 @@ public class UserTest {
         workout.addToPlan(workingSet, -1);
         test.addSavedWorkout(workout);
         test.startSavedWorkout("Push");
-        assertTrue(test.getWorkoutHistory().contains(workout));
+
+        //if it worked, then the name of the first workout will be "Push"
+        assertEquals("Push", test.getWorkoutHistory().get(0).getName());
     }
 }
