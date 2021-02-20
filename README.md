@@ -33,8 +33,15 @@ idea about how I want to use this app while working out. plus I have a decent am
 of exercises and using technology to aid my workouts.   
 
 ## User Stories
+### PHASE 1
 As a user, I want to be able to:
 - plan sets, reps, and rpe for an exercise
 - record weight for each set
 - make a workout plan (list of exercises)
 - change an exercise in a workout plan
+### PHASE 2
+As a user, I want to be able to:
+- save a workout on file
+- load a workout from file
+- save a cumulative list of exercises to file
+- load exercises from that list into workouts
