@@ -35,13 +35,20 @@ of exercises and using technology to aid my workouts.
 ## User Stories
 ### PHASE 1
 As a user, I want to be able to:
+- create a user
 - plan sets, reps, and rpe for an exercise
-- record weight for each set
 - make a workout plan (list of exercises)
-- change an exercise in a workout plan
+- view workout plans
+
+Things I did not do because I am bad at time management:
+- record weight for each set (done!)
+- change an exercise in a workout plan (done!)
 ### PHASE 2
 As a user, I want to be able to:
 - save a workout on file
 - load a workout from file
 - save a cumulative list of exercises to file
 - load exercises from that list into workouts
+
+A few other things I did from phase 1 as a clever way to procrastinate on doing actually useful things: 
+- as a user I want to be able to see my workout history

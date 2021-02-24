@@ -54,8 +54,8 @@ public class User {
     public void startSavedWorkout(String name) {
         ActiveWorkout temp = new ActiveWorkout("temp");
         for (int i = 0; i < savedWorkouts.size(); i++) {
-            if (name == savedWorkouts.get(i).getName()) {
-                temp = new ActiveWorkout("name", savedWorkouts.get(i));
+            if (name.equals(savedWorkouts.get(i).getName())) {
+                temp = new ActiveWorkout(name, savedWorkouts.get(i));
             }
         }
         this.addActiveWorkout(temp);

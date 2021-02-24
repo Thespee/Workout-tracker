@@ -29,7 +29,7 @@ public class Workout {
     //effects removes the matching exercise from the workout plan
     public void removeFromPlan(String exerciseName) {
         for (int i = 0; i < workoutPlan.size();i++) {
-            if (exerciseName == workoutPlan.get(i).getExercise().getName()) {
+            if (exerciseName.equals(workoutPlan.get(i).getExercise().getName())) {
                 workoutPlan.remove(i);
             }
         }
@@ -49,5 +49,17 @@ public class Workout {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    //REQUIRES toRemove be an exercise in the workout
+    //MODIFIES this
+    //EFFECTS replaces exercise toRemove with toAdd
+    public void replaceInPlan(String toRemove, WorkingSet toAdd) {
+        for (int i = 0; i < workoutPlan.size();i++) {
+            if (toRemove.equals(workoutPlan.get(i).getExercise().getName())) {
+                workoutPlan.remove(i);
+                this.addToPlan(toAdd, i + 1);
+            }
+        }
     }
 }

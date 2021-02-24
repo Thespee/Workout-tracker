@@ -38,4 +38,14 @@ public class WorkoutTest {
         test.removeFromPlan("test");
         assertEquals(0, test.getWorkoutPlan().size());
     }
+
+    @Test
+    public void testReplaceInPlan() {
+        Exercise testExercise = new Exercise("test");
+        WorkingSet workingSet1 = new WorkingSet(testExercise,1,1,1);
+        WorkingSet workingSet2 = new WorkingSet(testExercise,2,2,2);
+        test.addToPlan(workingSet1, -1);
+        test.replaceInPlan("test", workingSet2);
+        assertEquals(2,test.getWorkingSet(1).getSets());
+    }
 }
