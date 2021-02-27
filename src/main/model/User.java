@@ -44,7 +44,7 @@ public class User {
                 }
             }
         }
-        //if it doesnt find it, return null
+        //if it doesn't find it, return null
         return null;
     }
 

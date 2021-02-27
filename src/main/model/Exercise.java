@@ -1,12 +1,15 @@
 package model;
-//TODO add representation for exercise name, primary & secondary muscles worked
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class Exercise {
+public class Exercise implements Writable {
     String name;
     ArrayList<String> primary;
     ArrayList<String> secondary;
+
+    public Exercise() {    }
 
     public Exercise(String n, ArrayList<String> p, ArrayList<String> s) {
         this.name = n;
@@ -44,5 +47,12 @@ public class Exercise {
     //EFFECTS returns true if exercise works this muscle secondarily, false otherwise
     public boolean worksSecondary(String muscle) {
         return secondary.contains(muscle);
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        return json;
     }
 }
