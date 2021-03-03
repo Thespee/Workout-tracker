@@ -1,6 +1,9 @@
 package model;
 
-public class WorkingSet {
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+public class WorkingSet implements Writable {
     Exercise exercise;
     int sets;
     int reps;
@@ -43,6 +46,18 @@ public class WorkingSet {
         this.workingWeight[set - 1] = weight;
     }
 
+    //MODIFIES this
+    //EFFECTS sets the working reps array to passed in array
+    public void setWorkingReps(int[] i) {
+        workingReps = i;
+    }
+
+    //MODIFIES this
+    //EFFECTS sets the working weight array to passed in array
+    public void setWorkingWeight(double[] d) {
+        workingWeight = d;
+    }
+
     public Exercise getExercise() {
         return exercise;
     }
@@ -80,5 +95,41 @@ public class WorkingSet {
     //REQUIRES set to be within set range (1-this.set)
     public double getWorkingWeight(int set) {
         return workingWeight[set - 1];
+    }
+
+    /*
+    Exercise exercise;
+    int sets;
+    int reps;
+    int repRange;
+    int[] workingReps;
+    double[] workingWeight;
+     */
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("exercise", exercise.toJson());
+        json.put("sets", sets);
+        json.put("reps", reps);
+        json.put("rpe", rpe);
+        json.put("workingReps", toJsonArray(workingReps));
+        json.put("workingWeight", toJsonArray(workingWeight));
+        return json;
+    }
+
+    private JSONArray toJsonArray(int[] array) {
+        JSONArray jsonArray = new JSONArray();
+        for (int i : array) {
+            jsonArray.put(i);
+        }
+        return jsonArray;
+    }
+
+    private JSONArray toJsonArray(double[] array) {
+        JSONArray jsonArray = new JSONArray();
+        for (double d : array) {
+            jsonArray.put(d);
+        }
+        return jsonArray;
     }
 }

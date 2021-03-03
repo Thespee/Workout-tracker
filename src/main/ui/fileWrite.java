@@ -1,28 +1,32 @@
 package ui;
 
 import model.Exercise;
+import model.WorkingSet;
 import persistence.ExerciseReader;
-import persistence.ExerciseWriter;
+import persistence.WorkingSetReader;
+import persistence.WorkingSetWriter;
 
 import java.io.IOException;
 
 public class fileWrite {
-    private static final String JSON_STORE = "./data/test.json";
-    private ExerciseWriter exerciseWriter;
-    private ExerciseReader exerciseReader;
-    private Exercise eIn;
-    private Exercise eOut;
+    private static final String JSON_STORE = "./data/testWorkingSet.json";
+    private WorkingSetWriter workingSetWriter;
+    private WorkingSetReader workingSetReader;
+    private Exercise e;
+    private WorkingSet wsIn;
+    private WorkingSet wsOut;
 
     public fileWrite() throws IOException {
-        this.eIn = new Exercise("Pushup");
+        this.e = new Exercise("Pushup");
+        this.wsIn = new WorkingSet(e,1,2,3);
 
-        this.exerciseWriter = new ExerciseWriter(JSON_STORE);
-        exerciseWriter.open();
-        exerciseWriter.write(eIn);
-        exerciseWriter.close();
+        this.workingSetWriter = new WorkingSetWriter(JSON_STORE);
+        workingSetWriter.open();
+        workingSetWriter.write(wsIn);
+        workingSetWriter.close();
 
-        exerciseReader = new ExerciseReader(JSON_STORE);
-        eOut = exerciseReader.read();
-        System.out.println("Loaded: " + eOut.getName());
+        workingSetReader = new WorkingSetReader(JSON_STORE);
+        wsOut = workingSetReader.read();
+        System.out.println("Loaded: " + wsOut.getExercise().getName());
     }
 }

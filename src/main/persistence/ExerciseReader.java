@@ -15,11 +15,11 @@ public class ExerciseReader extends Reader {
     public Exercise read() throws IOException {
         String jsonData = readFile(getSource());
         JSONObject jsonObject = new JSONObject(jsonData);
-        return parse(jsonObject);
+        return parseExercise(jsonObject);
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
-    private Exercise parse(JSONObject jsonObject) {
+    // EFFECTS: parses exercise from JSON
+    public Exercise parseExercise(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Exercise e = new Exercise(name);
         return e;
