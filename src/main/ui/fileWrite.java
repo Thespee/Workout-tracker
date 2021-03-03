@@ -2,31 +2,36 @@ package ui;
 
 import model.Exercise;
 import model.WorkingSet;
-import persistence.ExerciseReader;
+import model.Workout;
 import persistence.WorkingSetReader;
-import persistence.WorkingSetWriter;
+import persistence.WorkoutReader;
+import persistence.WorkoutWriter;
 
 import java.io.IOException;
 
 public class fileWrite {
-    private static final String JSON_STORE = "./data/testWorkingSet.json";
-    private WorkingSetWriter workingSetWriter;
-    private WorkingSetReader workingSetReader;
-    private Exercise e;
-    private WorkingSet wsIn;
-    private WorkingSet wsOut;
+    private static final String JSON_STORE = "./data/testWorkout.json";
+    private WorkoutWriter workoutWriter;
+    private WorkoutReader workoutReader;
+
 
     public fileWrite() throws IOException {
-        this.e = new Exercise("Pushup");
-        this.wsIn = new WorkingSet(e,1,2,3);
+        Exercise e1 = new Exercise("Pushup");
+        Exercise e2 = new Exercise("Pullup");
+        WorkingSet ws1 = new WorkingSet(e1,1,2,3);
+        WorkingSet ws2 = new WorkingSet(e2,4,5,6);
+        Workout w = new Workout("test");
+        w.addToPlan(ws1,-1);
+        w.addToPlan(ws2,-1);
 
-        this.workingSetWriter = new WorkingSetWriter(JSON_STORE);
-        workingSetWriter.open();
-        workingSetWriter.write(wsIn);
-        workingSetWriter.close();
+        this.workoutWriter = new WorkoutWriter(JSON_STORE);
+        workoutWriter.open();
+        workoutWriter.write(w);
+        workoutWriter.close();
 
-        workingSetReader = new WorkingSetReader(JSON_STORE);
-        wsOut = workingSetReader.read();
-        System.out.println("Loaded: " + wsOut.getExercise().getName());
+        workoutReader = new WorkoutReader(JSON_STORE);
+        Workout wOut = workoutReader.read();
+        System.out.println("Loaded: " + wOut.getName());
+
     }
 }

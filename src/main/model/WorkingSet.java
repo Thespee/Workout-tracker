@@ -97,14 +97,7 @@ public class WorkingSet implements Writable {
         return workingWeight[set - 1];
     }
 
-    /*
-    Exercise exercise;
-    int sets;
-    int reps;
-    int repRange;
-    int[] workingReps;
-    double[] workingWeight;
-     */
+    //EFFECTS returns a JSON object representing a working set
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -117,6 +110,7 @@ public class WorkingSet implements Writable {
         return json;
     }
 
+    //EFFECTS returns a JSONArray of a int array
     private JSONArray toJsonArray(int[] array) {
         JSONArray jsonArray = new JSONArray();
         for (int i : array) {
@@ -125,6 +119,7 @@ public class WorkingSet implements Writable {
         return jsonArray;
     }
 
+    //EFFECTS returns a JSONArray of a double array
     private JSONArray toJsonArray(double[] array) {
         JSONArray jsonArray = new JSONArray();
         for (double d : array) {

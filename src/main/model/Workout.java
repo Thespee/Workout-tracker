@@ -1,9 +1,12 @@
 package model;
 //has a name and a list of working sets
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
-public class Workout {
+public class Workout implements Writable {
     String name;
     ArrayList<WorkingSet> workoutPlan;
 
@@ -61,5 +64,22 @@ public class Workout {
                 this.addToPlan(toAdd, i + 1);
             }
         }
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("workoutPlan", toJsonArray(workoutPlan));
+        return json;
+    }
+
+    //EFFECTS returns a JSONArray of the workout plan
+    private JSONArray toJsonArray(ArrayList<WorkingSet> workingSets) {
+        JSONArray array = new JSONArray();
+        for (WorkingSet ws : workingSets) {
+            array.put(ws.toJson());
+        }
+        return array;
     }
 }
