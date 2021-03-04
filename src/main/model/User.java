@@ -1,9 +1,13 @@
 package model;
 //will have a history (list) of past workout and a list of stored workouts
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
-public class User {
+public class User implements Writable {
     String name;
     ArrayList<ActiveWorkout> workoutHistory;
     ArrayList<Workout> savedWorkouts;
@@ -50,7 +54,7 @@ public class User {
 
     //REQUIRES name to be the name of a saved workout
     //MODIFIES workout history
-    //EFFECTS add an entry to workout histroy from the list of saved ones
+    //EFFECTS add an entry to workout history from the list of saved ones
     public void startSavedWorkout(String name) {
         ActiveWorkout temp = new ActiveWorkout("temp");
         for (int i = 0; i < savedWorkouts.size(); i++) {
@@ -71,5 +75,32 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("savedWorkouts", savedToJsonArray(savedWorkouts));
+        json.put("workoutHistory", historyToJsonArray(workoutHistory));
+        return null;
+    }
+
+    //EFFECTS returns a json array of Workout history
+    public JSONArray historyToJsonArray(ArrayList<ActiveWorkout> workouts) {
+        JSONArray array = new JSONArray();
+        for (ActiveWorkout aw : workouts) {
+            array.put(aw.toJson());
+        }
+        return array;
+    }
+
+    //EFFECTS returns a json array of saved workouts
+    public JSONArray savedToJsonArray(ArrayList<Workout> workouts) {
+        JSONArray array = new JSONArray();
+        for (Workout w : workouts) {
+            array.put(w.toJson());
+        }
+        return array;
     }
 }

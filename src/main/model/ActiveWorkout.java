@@ -1,7 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
+import java.util.ArrayList;
+
 //extends the workout class for workouts that you already did
-public class ActiveWorkout extends Workout {
+public class ActiveWorkout extends Workout implements Writable {
     String date; //will have form "YYYY-MM-DD" eg "2021-02-13"
 
     public ActiveWorkout(String name) {
@@ -31,5 +37,24 @@ public class ActiveWorkout extends Workout {
 
     public String getDate() {
         return date;
+    }
+
+    @Override
+    //EFFECTS returns a json object representing an active workout
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("date", date);
+        json.put("workoutPlan", toJsonArray(workoutPlan));
+        return json;
+    }
+
+    @Override
+    public JSONArray toJsonArray(ArrayList<WorkingSet> workingSets) {
+        JSONArray array = new JSONArray();
+        for (WorkingSet ws : workingSets) {
+            array.put(ws.toJson());
+        }
+        return array;
     }
 }

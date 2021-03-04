@@ -47,8 +47,6 @@ Things I did not do because I am bad at time management:
 As a user, I want to be able to:
 - save a workout on file
 - load a workout from file
-- save a cumulative list of exercises to file
-- load exercises from that list into workouts
 
 A few other things I did from phase 1 as a clever way to procrastinate on doing actually useful things: 
 - as a user I want to be able to see my workout history

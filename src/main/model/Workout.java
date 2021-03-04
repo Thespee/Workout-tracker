@@ -3,6 +3,7 @@ package model;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import persistence.Writable;
 
 import java.util.ArrayList;
 
@@ -67,6 +68,7 @@ public class Workout implements Writable {
     }
 
     @Override
+    //EFFECTS returns a json object representation of a workout
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);
@@ -75,7 +77,7 @@ public class Workout implements Writable {
     }
 
     //EFFECTS returns a JSONArray of the workout plan
-    private JSONArray toJsonArray(ArrayList<WorkingSet> workingSets) {
+    public JSONArray toJsonArray(ArrayList<WorkingSet> workingSets) {
         JSONArray array = new JSONArray();
         for (WorkingSet ws : workingSets) {
             array.put(ws.toJson());
