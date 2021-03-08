@@ -83,7 +83,7 @@ public class User implements Writable {
         json.put("name", name);
         json.put("savedWorkouts", savedToJsonArray(savedWorkouts));
         json.put("workoutHistory", historyToJsonArray(workoutHistory));
-        return null;
+        return json;
     }
 
     //EFFECTS returns a json array of Workout history

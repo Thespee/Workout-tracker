@@ -1,17 +1,40 @@
 package ui;
 
 import model.*;
+import persistence.UserReader;
+import persistence.UserWriter;
+
 import java.io.*;
 
 public class UI {
-    BufferedReader consolIn;
-    User user1;
-    final int exitcode = 6;
+    private BufferedReader consolIn;
+    private static final String JSON_STORE = "./data/userData.json";
+    private UserReader userReader;
+    private UserWriter userWriter = new UserWriter(JSON_STORE);
+    private User user1;
+    final int exitcode = 8;
 
     public UI() throws IOException {
         this.consolIn = new BufferedReader(new InputStreamReader(System.in));
-        this.createUser();
+        userReader = new UserReader(JSON_STORE);
+        //userWriter = new UserWriter(JSON_STORE);
+        this.getUser();
         this.menu();
+    }
+
+    //REQUIRES
+    //MODIFIES this
+    //EFFECTS determines if the user wants to create a new profile or use the saved one
+    private void getUser() throws  IOException {
+        System.out.println("(1) Create new user (Will overwrite saved user when you save");
+        System.out.println("(2) Continue with saved user");
+        int choice = Integer.parseInt(consolIn.readLine());
+        if (choice == 1) {
+            this.createUser();
+        } else if (choice == 2) {
+            loadUser();
+            System.out.println("Welcome back " + user1.getName());
+        }
     }
 
     //REQUIRES
@@ -34,11 +57,20 @@ public class UI {
         System.out.println("(3) Edit Workout");
         System.out.println("(4) See Saved Workouts");
         System.out.println("(5) See Workout History");
-        System.out.println("(6) Exit");
+        System.out.println("(6) Save User (WILL OVERWRITE SAVED USER)");
+        System.out.println("(7) Load User (WILL OVERWRITE CURRENT USER)");
+        System.out.println("(8) Exit");
         int choice = Integer.parseInt(consolIn.readLine());
         if (choice != exitcode) {
             this.menuChoice(choice);
             this.menu();
+        } else if (choice == exitcode) {
+            System.out.println("Save first? (y/n)");
+            System.out.println("WARNING: WILL OVERWRITE SAVED USER");
+            String c = consolIn.readLine();
+            if (c.equals("y")) {
+                saveUser();
+            }
         }
 
     }
@@ -62,6 +94,12 @@ public class UI {
                 break;
             case 5:
                 this.showWorkoutHistory();
+                break;
+            case 6:
+                saveUser();
+                break;
+            case 7:
+                loadUser();
                 break;
         }
     }
@@ -223,5 +261,23 @@ public class UI {
                 }
             }
         }
+    }
+
+    //REQUIRES
+    //MODIFIES this
+    //EFFECTS loads the user from file
+    private void loadUser() throws IOException {
+        user1 = userReader.read();
+        System.out.println("Loaded " + user1.getName() + " from file");
+    }
+
+    //REQUIRES
+    //MODIFIES this
+    //EFFECTS saves the current user to file
+    private void saveUser() throws IOException {
+        userWriter.open();
+        userWriter.write(user1);
+        userWriter.close();
+        System.out.println("saved " + user1.getName() + " to file");
     }
 }
