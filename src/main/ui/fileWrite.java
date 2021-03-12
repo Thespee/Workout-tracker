@@ -1,3 +1,5 @@
+/*
+//THIS WAS USED FOR TESTING THE READERS AND WRITERS BEFORE I SET UP ACTUAL TESTS
 package ui;
 
 import model.Exercise;
@@ -35,3 +37,4 @@ public class fileWrite {
 
     }
 }
+ */
