@@ -18,6 +18,7 @@ public class ActiveWorkout extends Workout implements Writable {
         super(name);
         this.name = workout.getName();
         this.workoutPlan = workout.getWorkoutPlan();
+        this.date = "";
     }
 
     //REQUIRES exercise to be in  workout plan int set to be within the range specified when creating the working set

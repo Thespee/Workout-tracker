@@ -1,0 +1,31 @@
+{
+    "workoutPlan": [
+        {
+            "reps": 5,
+            "sets": 4,
+            "workingReps": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "rpe": 6,
+            "exercise": {"name": "Pull up"},
+            "workingWeight": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        {
+            "reps": 2,
+            "sets": 1,
+            "workingReps": [0],
+            "rpe": 3,
+            "exercise": {"name": "Push up"},
+            "workingWeight": [0]
+        }
+    ],
+    "name": "Push"
+}

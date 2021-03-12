@@ -35,5 +35,9 @@ public abstract class Writer {
         writer.print(json);
     }
 
+    public String getDestination() {
+        return destination;
+    }
+
     //each extends of writer will need its own write function
 }
