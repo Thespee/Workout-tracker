@@ -1,15 +1,5 @@
 {
-    "name": "Alex",
-    "savedWorkouts": [{
-        "workoutPlan": [{
-            "reps": 2,
-            "sets": 1,
-            "workingReps": [0],
-            "rpe": 3,
-            "exercise": {"name": "push up"},
-            "workingWeight": [0]
-        }],
-        "name": "Help me "
-    }],
+    "name": "George Washington",
+    "savedWorkouts": [],
     "workoutHistory": []
 }

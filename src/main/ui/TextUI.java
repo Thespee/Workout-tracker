@@ -6,7 +6,7 @@ import persistence.UserWriter;
 
 import java.io.*;
 
-public class UI {
+public class TextUI {
     private BufferedReader consolIn;
     private static final String JSON_STORE = "./data/userData.json";
     private UserReader userReader;
@@ -14,7 +14,7 @@ public class UI {
     private User user1;
     final int exitcode = 8;
 
-    public UI() throws IOException {
+    public TextUI() throws IOException {
         this.consolIn = new BufferedReader(new InputStreamReader(System.in));
         userReader = new UserReader(JSON_STORE);
         //userWriter = new UserWriter(JSON_STORE);

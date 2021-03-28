@@ -2,8 +2,8 @@ package ui;
 
 import java.io.*;
 
-public class Main {
+public class WorkOutTrackerTextUI {
     public static void main(String[] args) throws IOException  {
-        UI ui = new UI();
+        TextUI textUi = new TextUI();
     }
 }
