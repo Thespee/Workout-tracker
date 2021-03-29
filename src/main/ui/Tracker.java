@@ -1,11 +1,11 @@
 package ui;
 
 import model.User;
+import model.Workout;
 import persistence.UserReader;
 import persistence.UserWriter;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import javax.swing.*;
 
 public class Tracker {
     public static final int HEIGHT = 500;
@@ -19,11 +19,19 @@ public class Tracker {
     private UserReader userReader;
     private UserWriter userWriter = new UserWriter(JSON_STORE);
 
+    private JList workoutList;
+    private DefaultListModel listModel;
+
     public Tracker() {
         userReader = new UserReader(JSON_STORE);
         loggedIn = false;
+        listModel = new DefaultListModel();
+
     }
 
+    //REQUIRES
+    //MODIFIES this.user1
+    //EFFECTS loads a user from memory
     public void loadUser() {
         try {
             user1 = userReader.read();
@@ -34,6 +42,9 @@ public class Tracker {
 
     }
 
+    //REQUIRES
+    //MODIFIES this.user1
+    //EFFECTS sets user to given user
     public void setUser(User u) {
         this.user1 = u;
         System.out.println("New User: " + u.getName());
@@ -51,6 +62,9 @@ public class Tracker {
         this.loggedIn = state;
     }
 
+    //REQUIRES correct file path
+    //MODIFIES userData.JSON
+    //EFFECTS saves user to JSON file
     public void saveUser() {
         try {
             userWriter.open();
@@ -61,5 +75,25 @@ public class Tracker {
         userWriter.write(user1);
         userWriter.close();
         System.out.println("saved " + user1.getName() + " to file");
+    }
+
+    //Returns the user's saved workouts as a Jlist for display
+    public JList getWorkoutList() {
+        workoutList = new JList(getListModel());
+        workoutList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        workoutList.setSelectedIndex(0);
+        return workoutList;
+    }
+
+    public Workout getSavedWorkout(int i) {
+        return user1.getSavedWorkouts().get(i);
+    }
+
+    public DefaultListModel getListModel() {
+        listModel.clear();
+        for (Workout w : user1.getSavedWorkouts()) {
+            listModel.addElement("<html>" + w.toString() + "</html>");
+        }
+        return listModel;
     }
 }

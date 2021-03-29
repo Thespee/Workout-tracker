@@ -84,4 +84,16 @@ public class Workout implements Writable {
         }
         return array;
     }
+
+    @Override
+    public String toString() {
+        String workoutString = "";
+        workoutString += name;
+        for (WorkingSet ws : workoutPlan) {
+            workoutString += "<br/>";
+            workoutString += ws.toString();
+        }
+
+        return workoutString;
+    }
 }

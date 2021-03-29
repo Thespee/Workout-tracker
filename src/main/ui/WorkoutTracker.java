@@ -1,7 +1,7 @@
 package ui;
 
-import ui.menuPanels.LogInPanel;
-import ui.menuPanels.MenuPanel;
+import ui.panels.LogInPanel;
+import ui.panels.MenuPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +15,7 @@ public class WorkoutTracker extends JFrame {
     private MenuPanel mp;
 
     private static final int INTERVAL = 20;
-    private Timer t;
+    private Timer timer;
 
     public WorkoutTracker() {
         super("Workout Tracker");
@@ -31,22 +31,7 @@ public class WorkoutTracker extends JFrame {
         pack();
         setVisible(true);
         addTimer();
-        t.start();
-
-        /*while (!tracker.isLoggedIn()) {
-            t.start();
-            //waiting until user is selected before continuing
-            //System.out.println("waiting");
-            //TimeUnit.SECONDS.sleep(1);
-        }
-
-        setVisible(false);
-        remove(lip);
-        add(mp);
-        pack();
-        setVisible(true);
-
-         */
+        timer.start();
     }
 
     private void centreOnScreen() {
@@ -59,13 +44,13 @@ public class WorkoutTracker extends JFrame {
     }
 
     private void addTimer() {
-        t = new Timer(INTERVAL, new ActionListener() {
+        timer = new Timer(INTERVAL, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if (tracker.isLoggedIn()) {
                     setVisible(false);
                     remove(lip);
-                    t.stop();
+                    timer.stop();
                     showMenu();
                 }
             }

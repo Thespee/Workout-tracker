@@ -1,5 +1,28 @@
 {
-    "name": "George Washington",
-    "savedWorkouts": [],
+    "name": "Alex",
+    "savedWorkouts": [
+        {
+            "workoutPlan": [{
+                "reps": 2,
+                "sets": 1,
+                "workingReps": [0],
+                "rpe": 3,
+                "exercise": {"name": "push ups"},
+                "workingWeight": [0]
+            }],
+            "name": "Push day"
+        },
+        {
+            "workoutPlan": [{
+                "reps": 2,
+                "sets": 1,
+                "workingReps": [0],
+                "rpe": 3,
+                "exercise": {"name": "pull up"},
+                "workingWeight": [0]
+            }],
+            "name": "Pull Day"
+        }
+    ],
     "workoutHistory": []
 }

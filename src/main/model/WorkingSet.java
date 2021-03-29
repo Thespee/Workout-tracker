@@ -128,4 +128,9 @@ public class WorkingSet implements Writable {
         }
         return jsonArray;
     }
+
+    @Override
+    public String toString() {
+        return exercise.getName() + " Sets: " + sets + " Reps: " + reps + " RPE: " + rpe;
+    }
 }

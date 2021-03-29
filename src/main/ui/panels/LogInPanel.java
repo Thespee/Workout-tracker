@@ -1,13 +1,18 @@
-package ui.menuPanels;
+package ui.panels;
 
 import model.User;
 import ui.Tracker;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+//Creates a log in panel that lets the user select between loading the saved user or creating a new user
 public class LogInPanel extends JPanel implements ActionListener {
     private Tracker tracker;
 
@@ -15,6 +20,7 @@ public class LogInPanel extends JPanel implements ActionListener {
 
     private static final int BTN_WIDTH = 100;
     private static final int BTN_HEIGHT = 60;
+    private static final String LOGO_STORE = "./data/Images/logo.jpg";
 
     public LogInPanel(Tracker tracker) {
         this.tracker = tracker;
@@ -43,10 +49,13 @@ public class LogInPanel extends JPanel implements ActionListener {
         newUserBox.add(Box.createHorizontalStrut(10));
         newUserBox.add(field);
         box.add(newUserBox);
-        
+        box.add(new Logo(), BorderLayout.SOUTH);
+
         add(box);
     }
 
+    //MODIFIES this.tracker
+    //EFFECTS loads the correct user or creates a new user
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("logIn")) {
             tracker.loadUser();
@@ -62,5 +71,31 @@ public class LogInPanel extends JPanel implements ActionListener {
 
     public JTextField getField() {
         return field;
+    }
+
+    //EFFECTS creates the logo image
+    class Logo extends Component {
+        BufferedImage img;
+
+        public void paint(Graphics g) {
+            g.drawImage(img, 100, 0, null);
+        }
+
+        public Logo() {
+            try {
+                img = ImageIO.read(new File(LOGO_STORE));
+            } catch (IOException e) {
+                System.out.println("Image not found");
+            }
+
+        }
+
+        public Dimension getPreferredSize() {
+            if (img == null) {
+                return new Dimension(100,100);
+            } else {
+                return new Dimension(img.getWidth(null), img.getHeight(null));
+            }
+        }
     }
 }
