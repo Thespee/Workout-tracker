@@ -120,7 +120,7 @@ public class MenuPanel extends JSplitPane implements ActionListener  {
                 update(new ActiveWorkoutPanel(tracker));
                 break;
             case "load" :
-                saveLogo.setVisible(false);
+                tracker.loadUser();
                 break;
             case "save" :
                 //make the saved logo visible
