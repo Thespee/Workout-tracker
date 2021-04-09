@@ -50,3 +50,9 @@ As a user, I want to be able to:
 
 A few other things I did from phase 1 as a clever way to procrastinate on doing actually useful things: 
 - as a user I want to be able to see my workout history
+
+### PHASE 3
+Did it
+
+### PHASE 4
+Task 2: My active workout class extends the workout class with additional functionality which fulfills option 2
