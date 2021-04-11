@@ -56,3 +56,9 @@ Did it
 
 ### PHASE 4
 Task 2: My active workout class extends the workout class with additional functionality which fulfills option 2
+Task 3: 
+- I would refactor the WorkingSet, Workout and ActiveWorkout classes to reduce coupling. For instance, the 
+recording of weight and reps (currently hadled by the working set class) only matters for active workouts 
+(maybe add an activeWorkingSet class)
+- I think the panels of the UI also contain a lot of duplicate code (e.g. size and colour & use of tracker object) which
+ could be abstracted away
