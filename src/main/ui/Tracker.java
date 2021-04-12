@@ -26,7 +26,6 @@ public class Tracker {
         userReader = new UserReader(JSON_STORE);
         loggedIn = false;
         listModel = new DefaultListModel();
-
     }
 
     //REQUIRES
@@ -89,6 +88,9 @@ public class Tracker {
         return user1.getSavedWorkouts().get(i);
     }
 
+    //REQUIRES
+    //MODIFIES
+    //EFFECTS retruns the list of saved workouts as a ListModel for swing
     public DefaultListModel getListModel() {
         listModel.clear();
         for (Workout w : user1.getSavedWorkouts()) {

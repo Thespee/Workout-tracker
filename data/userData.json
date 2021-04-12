@@ -22,17 +22,6 @@
                 "workingWeight": [0]
             }],
             "name": "Pull "
-        },
-        {
-            "workoutPlan": [{
-                "reps": 1,
-                "sets": 1,
-                "workingReps": [0],
-                "rpe": 1,
-                "exercise": {"name": "hello"},
-                "workingWeight": [0]
-            }],
-            "name": "test for demonstration"
         }
     ],
     "workoutHistory": []
